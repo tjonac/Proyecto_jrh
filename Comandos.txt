@@ -1,0 +1,14 @@
+* pwd: muestra el directorio en que se trabaja
+* git add <file>: Pasa los docs a staging area
+* git add: Pasa todos los archivos
+* git commit: Pasa los docs de staging area a repository (Para agregar un comentario presionar i, escribes, esc :wq)
+* git commit -m "comentario": Igual que el comando anterior pero agrega directamente el comentario
+* git status: Ver en que status (wd, sa, r) están los docs
+* git push: Subir los docs a Github
+* git pull:  Traer los docs de un server, traer los cambios de otros
+* git clone: Hacerte una copia de lo que está en el server a tu PC
+* git checkout -- <file>: Para revertir los cambios de los archivos
+* git diff <file>: Para ver las diferencias hechas en los archivos
+* git branch: Ver las ramas que hay ("master" es la rama default)
+* git branch "nombre": Crear una nueva rama
+* git checkout "nombre": Ir a una rama en especifico 
