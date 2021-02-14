@@ -1,4 +1,5 @@
 * pwd: muestra el directorio en que se trabaja
+* cd <directorio> : cambia el directorio de trabajo
 * git add <file>: Pasa los docs a staging area
 * git add: Pasa todos los archivos
 * git commit: Pasa los docs de staging area a repository (Para agregar un comentario presionar i, escribes, esc :wq)
