@@ -1,15 +1,19 @@
+"""
+Este programa utiliza la definición de la derivada de f en un punto x=a
+"""
 import numpy as np
 import matplotlib.pyplot as plt
 
-print("Este programa calcula derivadas númericas. ")
+class derivative():
+    def __init__(self,a,Eq):
+        self.a = a
+        self.Eq = Eq
 
-a = float(input("Ingrese el valor donde desea evaluar la derivada: "))
-Eq = input("Ingrese la función f(x) en sintaxis de python: ")
-h = 0.000001
-
-def f(x):
-    f = eval(Eq)
+    def derivate(self):
+        h = 0.000001
+        Dx = (f(self.a+h,self.Eq)-f(self.a,self.Eq))/h
+        r = "El valor de la derivada de "+str(self.Eq)+" evaluada en x = "+str(self.a)+" es: "+str(Dx)
+        return r
+def f(x,eq):
+    f = eval(eq)
     return f
-
-Dx = (f(a+h)-f(a))/h
-print("El valor de la derivada de ", Eq, " en x=",a," es:", Dx)
