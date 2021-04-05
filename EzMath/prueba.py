@@ -1,13 +1,14 @@
 import tkinter
-from tkinter import PhotoImage
-from PIL import Image,ImageTk
-root = tkinter.Tk()  
-root.geometry("960x600")
-img = Image.open("EzMath/Images/mate.png")
-img = img.resize((500, 250), Image.ANTIALIAS) # Redimension (Alto, Ancho)
-img = ImageTk.PhotoImage(img)
-botonNuevo1 = tkinter.Button(root, image=img, text="click aqui", compound="top")
-botonNuevo1.place(x=500, y=100)
-botonNuevo1.pack() 
+import time
+
+def update_the_label():
+    updated_text = time.strftime("The GM time now is %H:%M:%S.", time.gmtime())
+    w.configure(text = updated_text)
+
+root = tkinter.Tk()
+w = tkinter.Label(root, text = "Hello, world!")
+b = tkinter.Button(root, text = "Update the label", command = update_the_label)
+w.pack()
+b.pack()
 
 root.mainloop()

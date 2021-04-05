@@ -11,7 +11,7 @@ class euler_method():
         self.yo = yo
         self.x_lim = x_lim
         self.Eq = Eq
-        self.n = 1000
+        self.n = 10000
         self.h = (self.x_lim-self.xo)/self.n
         self.y1 = [self.yo]
         for i in range(self.n):
@@ -19,9 +19,10 @@ class euler_method():
             self.y1.append(y2)
     def graph(self):
         y = np.array(self.y1)
-        x = np.arange(self.xo,self.x_lim+self.h,self.h)
+        x = np.linspace(self.xo,self.x_lim,np.size(y))
         plt.plot(x,y,linestyle = "solid")
-        plt.show()
+        plt.savefig("EzMath/Images/EMethod.png",bbox_inches='tight')
+        plt.clf()
 def f(x,y,eq):
     f = eval(eq)
     return f
