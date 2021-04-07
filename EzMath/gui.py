@@ -14,17 +14,17 @@ import numpy as np
 import Dx 
 import EulerMethod as emd
 import Int 
-
+import Parametric_eq as Peq
 #<------------------------------Funciones---------------------------->
 def math_window():
 
     def euler_window():
-        def finish():
-            grafica = emd.euler_method(float(x0.get()),float(y0.get()),float(x_lim.get()),str(ec.get()))
-            grafica.graph()
-            grafica_image = tk.PhotoImage(file="EzMath/Images/EMethod.png")  #Se cambia  la imagen
-            grafica_label = tk.Label(euler,image=grafica_image).place(x=100,y=300)
-            grafica_label.image = grafica_image
+        def finish():                                                                                         #Se ejecuta al presionar el botón "Aceptar"
+            grafica = emd.euler_method(float(x0.get()),float(y0.get()),float(x_lim.get()),str(ec.get()))      #Se llama a la clase con los arguementos necesarios del programa EulerMethod.py
+            grafica.plot_emd()                                                                                #Se genera la grafica con el metodo del programa EulerMethod.py
+            grafica_image = tk.PhotoImage(file="EzMath/Images/EMethod.png")                                   #Se cambia  la imagen
+            grafica_label = tk.Label(euler,image=grafica_image).place(x=100,y=300)                            #Se inserta la nueva imagen 
+            grafica_label.image = grafica_image                                                               #Python elimina las variables locales (las definidas en funciones) como limpiador de basura, esto lo evita
 
         math_root.destroy()     #Se cierra la ventana de mate
         #<----------------------Configuración nueva ventana--------------------->
@@ -120,7 +120,8 @@ def math_window():
 
             resultado = StringVar()
             resultado.set(str(s.result_int()))
-            tk.Label(int_ventana,text=resultado.get(),fg="black",font=("Arial",14)).place(x=300,y=250)
+            resultado_label = tk.Label(int_ventana,text=resultado.get(),fg="black",font=("Arial",14))
+            resultado_label.place(x=300,y=250)
 
             grafica_image = tk.PhotoImage(file="EzMath/Images/Integral.png")           #Se cambia  la imagen
             grafica_label = tk.Label(int_ventana,image=grafica_image).place(x=65,y=290)
@@ -158,6 +159,55 @@ def math_window():
         grafica_label = tk.Label(int_ventana,image=grafica_image).place(x=80,y=350)           #Se inserta la imagen
         grafica_label.image = grafica_image
 
+    def plotter():
+        def plotter_peq():                                  #peq = Parametric EQuations
+            def finish():
+                s = Peq.parametric(float(t_lim1.get()),float(t_lim2.get()),str(x_eq.get()),str(y_eq.get()))
+                s.plot_peq()      #Se hace la grafica
+
+                grafica_image = tk.PhotoImage(file="EzMath/Images/ParametricEq.png")       #Se cambia  la imagen
+                grafica_label = tk.Label(peq_ventana,image=grafica_image).place(x=65,y=280)
+                grafica_label.image = grafica_image
+   
+            graficador_ventana.destroy()
+
+            peq_ventana = tk.Toplevel(root)                 #Crea la nueva ventana
+            peq_ventana.title("EzMath")                     #Titulo de la nueva ventana
+            peq_ventana.geometry("800x850")                 #Tamaño de la nueva ventana
+
+            tk.Label(peq_ventana,text="Se graficará la curva descrita por las ecuaciones parametricas",fg="black",font=("Arial",16)).pack(anchor=tk.CENTER)
+            tk.Label(peq_ventana,text="Ingrese el valor incial de t:",fg="black",font=("Arial",14)).place(x=50,y=50)
+            tk.Label(peq_ventana,text="Ingrese el valor final de t:",fg="black",font=("Arial",14)).place(x=50,y=100)
+            tk.Label(peq_ventana,text="Ingrese la ecuación x=f(t):",fg="black",font=("Arial",14)).place(x=50,y=150)
+            tk.Label(peq_ventana,text="Ingrese la ecuación y=g(t):",fg="black",font=("Arial",14)).place(x=50,y=200)
+
+            t_lim1 = DoubleVar()
+            ttk.Entry(peq_ventana,textvariable=t_lim1).place(x=300,y=50)
+            t_lim2 = DoubleVar()
+            ttk.Entry(peq_ventana,textvariable=t_lim2).place(x=300,y=100)
+            x_eq = StringVar()
+            ttk.Entry(peq_ventana,textvariable=x_eq).place(x=300,y=150)
+            y_eq = StringVar()
+            ttk.Entry(peq_ventana,textvariable=y_eq).place(x=300,y=200)
+
+            tk.Button(peq_ventana,text="Aceptar",command=finish).place(x=400,y=250)
+
+            grafica_image = tk.PhotoImage(file="EzMath/Images/Base.png")                    #Se procesa la imagen 
+            grafica_label = tk.Label(peq_ventana,image=grafica_image).place(x=80,y=300)           #Se inserta la imagen
+            grafica_label.image = grafica_image
+
+
+        math_root.destroy()
+
+        graficador_ventana = tk.Toplevel(root)                 #Crea la nueva ventana
+        graficador_ventana.title("EzMath")                     #Titulo de la nueva ventana
+        graficador_ventana.geometry("800x550")                 #Tamaño de la nueva ventana
+
+        tk.Label(graficador_ventana,text="¿Qué deseas graficar?",bg="black",font=("Arial",28)).pack(anchor=tk.CENTER)
+        
+        tk.Button(graficador_ventana,text="Función y=f(x)").place(x=50,y=100)
+        tk.Button(graficador_ventana,text="Ecuaciones Parametricas",command=plotter_peq).place(x=50,y=150)
+        tk.Button(graficador_ventana,text="Vectores R^2").place(x=50,y=200)
 
     #<----------------------Configuración de ventana------------------>
     root.iconify()                                #Miniminiza root 
@@ -167,9 +217,10 @@ def math_window():
     #<---------------------------Imagenes----------------------------->
     tk.Label(math_root,image=p2).place(x=200,y=50) #Se inserta la imagen
     #----------------------------Botones------------------------------>
-    tk.Button(math_root,text="Método de Euler",command=euler_window).place(x=50,y=200) #Botón Metodo de Euler
-    tk.Button(math_root,text="Derivación Numérica",command=derivative_window).place(x=50,y=250)                  #Botón Deivación Numérica
-    tk.Button(math_root,text="Integración Numérica",command=integrate_window).place(x=50,y=300)                 #Botón Integración Numérica
+    tk.Button(math_root,text="Método de Euler",command=euler_window).place(x=50,y=200)          #Botón Metodo de Euler
+    tk.Button(math_root,text="Derivación Numérica",command=derivative_window).place(x=50,y=250) #Botón Deivación Numérica
+    tk.Button(math_root,text="Integración Numérica",command=integrate_window).place(x=50,y=300) #Botón Integración Numérica
+    tk.Button(math_root,text="Graficador",command=plotter).place(x=50,y=350)
     
 
 def physics_window():

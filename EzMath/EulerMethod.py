@@ -17,7 +17,7 @@ class euler_method():
         for i in range(self.n):
             y2 = self.y1[i]+self.h*f(self.xo+i*self.h,self.y1[i],self.Eq)
             self.y1.append(y2)
-    def graph(self):
+    def plot_emd(self):
         y = np.array(self.y1)
         x = np.linspace(self.xo,self.x_lim,np.size(y))
         plt.plot(x,y,linestyle = "solid")
