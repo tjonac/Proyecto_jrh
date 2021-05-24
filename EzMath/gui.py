@@ -14,7 +14,7 @@ import numpy as np
 import Dx 
 import EulerMethod as emd
 import Int 
-import Parametric_eq as Peq
+import Graficador as gph
 #<------------------------------Funciones---------------------------->
 def math_window():
 
@@ -22,7 +22,7 @@ def math_window():
         def finish():                                                                                         #Se ejecuta al presionar el botón "Aceptar"
             grafica = emd.euler_method(float(x0.get()),float(y0.get()),float(x_lim.get()),str(ec.get()))      #Se llama a la clase con los arguementos necesarios del programa EulerMethod.py
             grafica.plot_emd()                                                                                #Se genera la grafica con el metodo del programa EulerMethod.py
-            grafica_image = tk.PhotoImage(file="EzMath/Images/EMethod.png")                                   #Se cambia  la imagen
+            grafica_image = tk.PhotoImage(file="Images/EMethod.png")                                   #Se cambia  la imagen
             grafica_label = tk.Label(euler,image=grafica_image).place(x=100,y=300)                            #Se inserta la nueva imagen 
             grafica_label.image = grafica_image                                                               #Python elimina las variables locales (las definidas en funciones) como limpiador de basura, esto lo evita
 
@@ -66,7 +66,7 @@ def math_window():
         #<-------------------------------Botones--------------------------------->
         tk.Button(euler,text="Aceptar",command=finish).place(x=400,y=270)
         #<-------------------------------Imagenes-------------------------------->
-        grafica_image = tk.PhotoImage(file="EzMath/Images/Base.png")                    #Se procesa la imagen 
+        grafica_image = tk.PhotoImage(file="Images/Base.png")                    #Se procesa la imagen 
         grafica_label = tk.Label(euler,image=grafica_image).place(x=80,y=300)           #Se inserta la imagen
         grafica_label.image = grafica_image
 
@@ -80,7 +80,7 @@ def math_window():
             resultado.set(str(s.result_dx()))
             tk.Label(dx_ventana,text=resultado.get(),fg="black",font=("Arial",14)).place(x=300,y=250)
 
-            grafica_image = tk.PhotoImage(file="EzMath/Images/Derivada.png")        #Se cambia  la imagen
+            grafica_image = tk.PhotoImage(file="Images/Derivada.png")        #Se cambia  la imagen
             grafica_label = tk.Label(dx_ventana,image=grafica_image).place(x=65,y=266)
             grafica_label.image = grafica_image
 
@@ -108,7 +108,7 @@ def math_window():
         #<-----------------------Botones------------------------------->
         tk.Button(dx_ventana,text="Aceptar",command=finish).place(x=400,y=200)
 
-        grafica_image = tk.PhotoImage(file="EzMath/Images/Base.png")                    #Se procesa la imagen 
+        grafica_image = tk.PhotoImage(file="Images/Base.png")                    #Se procesa la imagen 
         grafica_label = tk.Label(dx_ventana,image=grafica_image).place(x=80,y=300)           #Se inserta la imagen
         grafica_label.image = grafica_image
 
@@ -123,7 +123,7 @@ def math_window():
             resultado_label = tk.Label(int_ventana,text=resultado.get(),fg="black",font=("Arial",14))
             resultado_label.place(x=300,y=250)
 
-            grafica_image = tk.PhotoImage(file="EzMath/Images/Integral.png")           #Se cambia  la imagen
+            grafica_image = tk.PhotoImage(file="Images/Integral.png")           #Se cambia  la imagen
             grafica_label = tk.Label(int_ventana,image=grafica_image).place(x=65,y=290)
             grafica_label.image = grafica_image
 
@@ -155,17 +155,17 @@ def math_window():
         #<-----------------------Botones------------------------------->
         tk.Button(int_ventana,text="Aceptar",command=finish).place(x=400,y=200)
 
-        grafica_image = tk.PhotoImage(file="EzMath/Images/Base.png")                    #Se procesa la imagen 
+        grafica_image = tk.PhotoImage(file="Images/Base.png")                    #Se procesa la imagen 
         grafica_label = tk.Label(int_ventana,image=grafica_image).place(x=80,y=350)           #Se inserta la imagen
         grafica_label.image = grafica_image
 
     def plotter():
         def plotter_peq():                                  #peq = Parametric EQuations
             def finish():
-                s = Peq.parametric(float(t_lim1.get()),float(t_lim2.get()),str(x_eq.get()),str(y_eq.get()))
+                s = gph.parametric(float(t_lim1.get()),float(t_lim2.get()),str(x_eq.get()),str(y_eq.get()))
                 s.plot_peq()      #Se hace la grafica
 
-                grafica_image = tk.PhotoImage(file="EzMath/Images/ParametricEq.png")       #Se cambia  la imagen
+                grafica_image = tk.PhotoImage(file="Images/ParametricEq.png")       #Se cambia  la imagen
                 grafica_label = tk.Label(peq_ventana,image=grafica_image).place(x=65,y=280)
                 grafica_label.image = grafica_image
    
@@ -175,7 +175,7 @@ def math_window():
             peq_ventana.title("EzMath")                     #Titulo de la nueva ventana
             peq_ventana.geometry("800x850")                 #Tamaño de la nueva ventana
 
-            tk.Label(peq_ventana,text="Se graficará la curva descrita por las ecuaciones parametricas",fg="black",font=("Arial",16)).pack(anchor=tk.CENTER)
+            tk.Label(peq_ventana,text="Se graficará la curva descrita por las ecuaciones parametricas",fg="black",font=("Arial",14)).pack(anchor=tk.CENTER)
             tk.Label(peq_ventana,text="Ingrese el valor incial de t:",fg="black",font=("Arial",14)).place(x=50,y=50)
             tk.Label(peq_ventana,text="Ingrese el valor final de t:",fg="black",font=("Arial",14)).place(x=50,y=100)
             tk.Label(peq_ventana,text="Ingrese la ecuación x=f(t):",fg="black",font=("Arial",14)).place(x=50,y=150)
@@ -192,8 +192,41 @@ def math_window():
 
             tk.Button(peq_ventana,text="Aceptar",command=finish).place(x=400,y=250)
 
-            grafica_image = tk.PhotoImage(file="EzMath/Images/Base.png")                    #Se procesa la imagen 
+            grafica_image = tk.PhotoImage(file="Images/Base.png")                    #Se procesa la imagen 
             grafica_label = tk.Label(peq_ventana,image=grafica_image).place(x=80,y=300)           #Se inserta la imagen
+            grafica_label.image = grafica_image
+
+        def plotter_eq_2d():
+            def finish():
+                s = gph.graphic_2d(float(x_lim1.get()),float(x_lim2.get()),str(eq.get()))
+                s.plot_eq2d()      #Se hace la grafica
+
+                grafica_image = tk.PhotoImage(file="Images/Eq_2d.png")       #Se cambia  la imagen
+                grafica_label = tk.Label(eq2d_ventana,image=grafica_image).place(x=65,y=280)
+                grafica_label.image = grafica_image
+   
+            graficador_ventana.destroy()
+
+            eq2d_ventana = tk.Toplevel(root)                 #Crea la nueva ventana
+            eq2d_ventana.title("EzMath")                     #Titulo de la nueva ventana
+            eq2d_ventana.geometry("800x850")                 #Tamaño de la nueva ventana
+
+            tk.Label(eq2d_ventana,text="Se graficará la función y=f(x)",fg="black",font=("Arial",16)).pack(anchor=tk.CENTER)
+            tk.Label(eq2d_ventana,text="Ingrese el valor incial de x:",fg="black",font=("Arial",14)).place(x=50,y=50)
+            tk.Label(eq2d_ventana,text="Ingrese el valor final de x:",fg="black",font=("Arial",14)).place(x=50,y=100)
+            tk.Label(eq2d_ventana,text="Ingrese la ecuación y=f(x):",fg="black",font=("Arial",14)).place(x=50,y=150)
+
+            x_lim1 = DoubleVar()
+            ttk.Entry(eq2d_ventana,textvariable=x_lim1).place(x=300,y=50)
+            x_lim2 = DoubleVar()
+            ttk.Entry(eq2d_ventana,textvariable=x_lim2).place(x=300,y=100)
+            eq = StringVar()
+            ttk.Entry(eq2d_ventana,textvariable=eq).place(x=300,y=150)
+
+            tk.Button(eq2d_ventana,text="Aceptar",command=finish).place(x=400,y=200)
+
+            grafica_image = tk.PhotoImage(file="Images/Base.png")                    #Se procesa la imagen 
+            grafica_label = tk.Label(eq2d_ventana,image=grafica_image).place(x=80,y=250)           #Se inserta la imagen
             grafica_label.image = grafica_image
 
 
@@ -205,7 +238,7 @@ def math_window():
 
         tk.Label(graficador_ventana,text="¿Qué deseas graficar?",bg="black",font=("Arial",28)).pack(anchor=tk.CENTER)
         
-        tk.Button(graficador_ventana,text="Función y=f(x)").place(x=50,y=100)
+        tk.Button(graficador_ventana,text="Función y=f(x)",command=plotter_eq_2d).place(x=50,y=100)
         tk.Button(graficador_ventana,text="Ecuaciones Parametricas",command=plotter_peq).place(x=50,y=150)
         tk.Button(graficador_ventana,text="Vectores R^2").place(x=50,y=200)
 
@@ -234,29 +267,24 @@ def physics_window():
 root = tk.Tk()
 root.title("EzMath")
 root.geometry("800x550")
-root.iconbitmap("EzMath/Images/icon.ico")
+root.iconbitmap("Images/icon.ico")
 root.config(bg="white")
 #<--------------------------Imagenes----------------------------->
-Logo = tk.PhotoImage(file="EzMath/Images/Logo.png")  #Se procesa la imagen
+Logo = tk.PhotoImage(file="Images/Logo.png")  #Se procesa la imagen
 tk.Label(root,image=Logo).place(x=200,y=0)           #Se inserta la imagen
 
-p1 = tk.PhotoImage(file="EzMath/Images/P1.png")      #Se procesa la imagen 
+p1 = tk.PhotoImage(file="Images/P1.png")      #Se procesa la imagen 
 tk.Label(root,image=p1).place(x=150,y=200)           #Se inserta la imagen
 
-p2 = tk.PhotoImage(file="EzMath/Images/P2.png")      #Se procesa la imagen (Lo demás en función)
+p2 = tk.PhotoImage(file="Images/P2.png")      #Se procesa la imagen (Lo demás en función)
 
-mate = Image.open("EzMath/Images/mate.jpg")     #Se procesa la imagen 
+mate = Image.open("Images/mate.jpg")     #Se procesa la imagen 
 mate = mate.resize((250, 150), Image.ANTIALIAS) #Redimension (Alto, Ancho)
 mate = ImageTk.PhotoImage(mate)                 #Se inserta la imagen
 
-fisica = Image.open("EzMath/Images/fisica.jpg")     #Se procesa la imagen
-fisica = fisica.resize((250, 150), Image.ANTIALIAS) #Redimension (Alto, Ancho)
-fisica = ImageTk.PhotoImage(fisica)                 #Se inserta la imagen
-
 #<----------------------------Botones----------------------------->
-tk.Button(root, image=mate, text="Presiona aqui", compound="top",command=math_window).place(x=100,y=300)
+tk.Button(root, image=mate, text="Presiona aqui", compound="top",command=math_window).place(x=250,y=300)
 
-tk.Button(root,image=fisica,text="Presiona aqui",compound="top",command=physics_window).place(x=450,y=300)
 
 
 

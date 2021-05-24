@@ -1,7 +1,8 @@
+from EzMath.Graficador import graphic_2d
 from Dx import *
 from EulerMethod import *
 from Int import *
-from Parametric_eq import *
+from Graficador import *
 #Integral de -1 a 1 de media circunferencia unitaria):
 p1 = integrate(-1,1,"np.sqrt(1-x**2)")
 p1.plot_int()
@@ -24,3 +25,6 @@ p3.plot_emd()
 p4 = parametric(0,2*3.1416,"np.cos(t)","np.sin(t)")
 p4.plot_peq()
 #Genera la circunferencia unitaria con centro en el origen
+
+p5 = graphic_2d(0,3.1416,"np.sin(x)")
+p5.plot_eq2d()
