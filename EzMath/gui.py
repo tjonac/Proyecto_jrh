@@ -6,6 +6,7 @@ from os import X_OK
 import tkinter as tk
 from tkinter import DoubleVar, PhotoImage, StringVar, Toplevel,ttk
 from tkinter import font
+from typing import Match
 from PIL import Image,ImageTk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from matplotlib.figure import Figure
@@ -202,7 +203,7 @@ def math_window():
                 s.plot_eq2d()      #Se hace la grafica
 
                 grafica_image = tk.PhotoImage(file="Images/Eq_2d.png")       #Se cambia  la imagen
-                grafica_label = tk.Label(eq2d_ventana,image=grafica_image).place(x=65,y=280)
+                grafica_label = tk.Label(eq2d_ventana,image=grafica_image).place(x=65,y=230)
                 grafica_label.image = grafica_image
    
             graficador_ventana.destroy()
@@ -236,32 +237,40 @@ def math_window():
         graficador_ventana.title("EzMath")                     #Titulo de la nueva ventana
         graficador_ventana.geometry("800x550")                 #Tamaño de la nueva ventana
 
-        tk.Label(graficador_ventana,text="¿Qué deseas graficar?",bg="black",font=("Arial",28)).pack(anchor=tk.CENTER)
+        tk.Label(graficador_ventana,text="¿Qué deseas graficar?",font=("Arial",40)).pack(anchor=tk.CENTER)
         
         tk.Button(graficador_ventana,text="Función y=f(x)",command=plotter_eq_2d).place(x=50,y=100)
         tk.Button(graficador_ventana,text="Ecuaciones Parametricas",command=plotter_peq).place(x=50,y=150)
         tk.Button(graficador_ventana,text="Vectores R^2").place(x=50,y=200)
 
-    #<----------------------Configuración de ventana------------------>
+    #<---------------------Configuración de ventana------------------->
     root.iconify()                                #Miniminiza root 
     math_root = tk.Toplevel(root)                 #Crea la nueva ventana
     math_root.title("EzMath")                     #Titulo de la nueva ventana
     math_root.geometry("800x550")                 #Tamaño de la nueva ventana
-    #<---------------------------Imagenes----------------------------->
+    #<----------------------------Titulo------------------------------>
     tk.Label(math_root,image=p2).place(x=200,y=50) #Se inserta la imagen
-    #----------------------------Botones------------------------------>
-    tk.Button(math_root,text="Método de Euler",command=euler_window).place(x=50,y=200)          #Botón Metodo de Euler
-    tk.Button(math_root,text="Derivación Numérica",command=derivative_window).place(x=50,y=250) #Botón Deivación Numérica
-    tk.Button(math_root,text="Integración Numérica",command=integrate_window).place(x=50,y=300) #Botón Integración Numérica
-    tk.Button(math_root,text="Graficador",command=plotter).place(x=50,y=350)
+
+    #<---------------------------Botones------------------------------>
+    tk.Button(math_root,text="Método de Euler",command=euler_window).place(x=230,y=250)          #Botón Metodo de Euler
+    tk.Button(math_root,text="Derivación Numérica",command=derivative_window).place(x=600,y=250) #Botón Deivación Numérica
+    tk.Button(math_root,text="Integración Numérica",command=integrate_window).place(x=600,y=450) #Botón Integración Numérica
+    tk.Button(math_root,text="Graficador",command=plotter).place(x=230,y=450)
+
+    #<---------------------------Imagenes------------------------------>  
+    em_icon = ImageTk.PhotoImage(file="Images/EM_icon.png")  
+    tk.Label(math_root,image=em_icon).place(x=40,y=200)
     
 
-def physics_window():
-    root.iconify()
-    physics_root = Toplevel(root)
-    physics_root.title("EzMath")
-    physics_root.geometry("800x550")
+    dx_icon = ImageTk.PhotoImage(file="Images/Dx_icon.png")  
+    tk.Label(math_root,image=dx_icon).place(x=400,y=200)
 
+    int_icon = ImageTk.PhotoImage(file="Images/Int_icon.png")  
+    tk.Label(math_root,image=int_icon).place(x=400,y=400)
+
+    plotter_icon = ImageTk.PhotoImage(file="Images/Plotter_icon.png")  
+    plotter_icon_label = tk.Label(math_root,image=plotter_icon).place(x=40,y=400)
+    plotter_icon_label.Image = plotter_icon
 
 #<-----------Configuración de la ventana principal root---------->
 root = tk.Tk()

@@ -21,7 +21,7 @@ class euler_method():
         y = np.array(self.y1)
         x = np.linspace(self.xo,self.x_lim,np.size(y))
         plt.plot(x,y,linestyle = "solid")
-        plt.savefig("EzMath/Images/EMethod.png",bbox_inches='tight')
+        plt.savefig("Images/EMethod.png",bbox_inches='tight')
         plt.clf()
 def f(x,y,eq):
     f = eval(eq)

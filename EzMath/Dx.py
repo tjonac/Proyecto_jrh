@@ -20,7 +20,7 @@ class derivative():
         y = f(x,self.Eq)
         plt.plot(x2,y2,color="#48cae4")
         plt.plot(x,y,color="#023e8a")
-        plt.savefig("EzMath/Images/Derivada.png")
+        plt.savefig("Images/Derivada.png")
         plt.clf()
 
 

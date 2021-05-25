@@ -25,7 +25,7 @@ class integrate():
         y = f(x,self.Eq)
         plt.plot(x,y,color="#023e8a")
         plt.fill_between(x2,y2,color="#48cae4")
-        plt.savefig("EzMath/Images/Integral.png")
+        plt.savefig("Images/Integral.png")
         plt.clf()
 
 

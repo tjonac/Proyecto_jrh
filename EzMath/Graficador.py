@@ -30,7 +30,7 @@ class parametric():
         y = g(t,self.y_eq)
 
         plt.plot(x,y,color="#023e8a")
-        plt.savefig("EzMath/Images/ParametricEq.png")
+        plt.savefig("Images/ParametricEq.png")
         plt.clf()
 
 class graphic_2d():
@@ -39,9 +39,9 @@ class graphic_2d():
         self.x_lim2 = x_lim2
         self.eq = eq
     def plot_eq2d(self):
-        x = np.arange(self.x_lim1,self.x_lim1,0.01)
+        x = np.arange(self.x_lim1,self.x_lim2,0.01)
         y = h(x,self.eq)
         plt.plot(x,y, color="#023e8a")
-        plt.savefig("EzMath/Images/Eq_2d.png")
+        plt.savefig("Images/Eq_2d.png")
         plt.clf()
 
