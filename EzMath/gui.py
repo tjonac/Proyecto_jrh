@@ -12,7 +12,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolb
 from matplotlib.figure import Figure
 from matplotlib.pyplot import text
 import numpy as np
-import Dx 
+import Dx
 import EulerMethod as emd
 import Int 
 import Graficador as gph
@@ -103,7 +103,7 @@ def math_window():
         tk.Label(dx_ventana,text="El valor de la derivada es: ",fg="black",font=("Arial",14)).place(x=50,y=250)
         #<-----------------------Entradas----------------------------->
         ec = StringVar()
-        ttk.Entry(dx_ventana,textvariable=ec).place(x=500,y=100)
+        ttk.Entry(dx_ventana,textvariable=ec).place(x=575,y=100)
         a = DoubleVar()
         ttk.Entry(dx_ventana,textvariable=a).place(x=500,y=150)
         #<-----------------------Botones------------------------------->
@@ -148,11 +148,11 @@ def math_window():
         tk.Label(int_ventana,text="El valor de la integral es: ",fg="black",font=("Arial",14)).place(x=50,y=250)
         #<-----------------------Entradas----------------------------->
         ec = StringVar()
-        ttk.Entry(int_ventana,textvariable=ec).place(x=500,y=50)
+        ttk.Entry(int_ventana,textvariable=ec).place(x=575,y=50)
         a = DoubleVar()
-        ttk.Entry(int_ventana,textvariable=a).place(x=500,y=100)
+        ttk.Entry(int_ventana,textvariable=a).place(x=250,y=100)
         b = DoubleVar()
-        ttk.Entry(int_ventana,textvariable=b).place(x=500,y=150)
+        ttk.Entry(int_ventana,textvariable=b).place(x=250,y=150)
         #<-----------------------Botones------------------------------->
         tk.Button(int_ventana,text="Aceptar",command=finish).place(x=400,y=200)
 
